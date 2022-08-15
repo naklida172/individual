@@ -6,8 +6,17 @@ def send_confirmation_email(code, email):
                 f' http://localhost:8000/api/v1/account/activate/{code}'
 
     send_mail(
-        'From furniture shop ',
+        'типо инстаграм ',
         full_link,
+        'homewer2016@gmail.com',
+        [email]
+    )
+
+
+def change_password_email(code, email):
+    send_mail(
+        'восстановление пароля',
+        f'ваш код -   "{code}"',
         'homewer2016@gmail.com',
         [email]
     )
