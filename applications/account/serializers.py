@@ -98,7 +98,7 @@ class ForgotPasswordCompleteSerializer(serializers.Serializer):
     email = serializers.EmailField(required=True)
     code = serializers.CharField(min_length=8, required=True)
     password = serializers.CharField(required=True, min_length=6)
-    password_confirm = serializers.CharField(required=True, min_length=6)
+    password_confirmation = serializers.CharField(required=True, min_length=6)
 
     def validate_email(self, email):
         if not User.objects.filter(email=email).exists():

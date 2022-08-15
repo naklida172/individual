@@ -7,7 +7,7 @@ from main.celery import app
 from django.core.mail import send_mail
 
 @app.task
-def send_product_info(name):
+def send_post_info(name):
     text = f'{name} сделал новый пост'
 
     for user in Contact.objects.all():

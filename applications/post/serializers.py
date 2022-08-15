@@ -2,7 +2,7 @@ from django.db.models import Avg
 from rest_framework import serializers
 
 from applications.post.models import Image, Post, Comment
-from applications.notifications.tasks import send_product_info
+from applications.notifications.tasks import send_post_info
 
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -33,9 +33,9 @@ class PostSerializer(serializers.ModelSerializer):
 
         post = Post.objects.create(**validated_data)
         for image in images.getlist('images'):
-            Image.objects.create(product=post, image=image)
+            Image.objects.create(post=post, image=image)
 
-        send_product_info.delay(validated_data['owner'].email)
+        send_post_info.delay(validated_data['owner'].email)
         return post
 
     def to_representation(self, instance):
